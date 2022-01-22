@@ -50,8 +50,8 @@ public class FileUploader {
         progressPart = 1.0 / (int) (size / buff);
         progressBar.setVisible(true);
         executorService.execute(() -> {
+            serverBox.setDisable(true);
             for (String selectedFile : selectedFiles) {
-                serverBox.setDisable(true);
                 Path filePath = baseDir.resolve(selectedFile);
                 try {
                     if (Files.isDirectory(filePath)) {
@@ -76,7 +76,7 @@ public class FileUploader {
                         uploadMessage(selectedFile, filePath);
                     }
                     os.writeObject(new RefreshMessage());
-                    progressBar.setProgress(0);
+                    Platform.runLater(()->progressBar.setProgress(0));
                 } catch (IOException e) {
                     e.printStackTrace();
                 } finally {

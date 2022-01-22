@@ -189,13 +189,13 @@ public class Controller implements Initializable {
     }
 
     public void registrationAuth(ActionEvent actionEvent) throws IOException {
-        if (loginFieldReg.getText().trim().isEmpty() || nickFieldReg.getText().isEmpty() || passwordFieldReg.getText().trim().isEmpty())
+        if (loginFieldReg.getText().trim().isEmpty() || nickFieldReg.getText().trim().isEmpty() || passwordFieldReg.getText().trim().isEmpty())
             return;
         os.writeObject(new RegistrationAuth(loginFieldReg.getText(), nickFieldReg.getText(), passwordFieldReg.getText()));
     }
 
     public void sendAuth(ActionEvent actionEvent) {
-        if (loginField.getText().trim().isEmpty() || passwordField.getText().trim().isEmpty())
+        if (loginField.getText().trim().isEmpty() || passwordField.getText().trim().isEmpty()) return;
             try {
                 os.writeObject(new AuthMessage(loginField.getText(), passwordField.getText()));
             } catch (IOException e) {
