@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ProgressBar?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0"
+            prefWidth="530.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="client.Controller">
+
+    <VBox fx:id="loginPanel">
+        <HBox VBox.vgrow="ALWAYS">
+            <TextField text="login..." fx:id="loginField" onAction="#sendAuth"/>
+            <PasswordField text="..." fx:id="passwordField" onAction="#sendAuth"/>
+        </HBox>
+        <Button text="Enter" onAction="#sendAuth"/>
+        <Button text="Registration" onAction="#registration"/>
+    </VBox>
+
+    <VBox visible="false" fx:id="registrationPanel">
+        <HBox VBox.vgrow="ALWAYS">
+            <TextField text="login..." fx:id="loginFieldReg" onAction="#registrationAuth"/>
+            <PasswordField text="..." fx:id="passwordFieldReg" onAction="#registrationAuth"/>
+            <TextField text="nick..." fx:id="nickFieldReg" onAction="#registrationAuth"/>
+        </HBox>
+        <Button text="Registration" onAction="#registrationAuth"/>
+        <Button text="Back" onAction="#goBackOnLoginPanel"/>
+    </VBox>
+
+    <VBox visible="false" fx:id="sharePanel">
+        <HBox VBox.vgrow="ALWAYS">
+            <TextField text="NickName for share" fx:id="shareField" onAction="#shareFileRequest"/>
+        </HBox>
+        <Button text="Enter" onAction="#shareFileRequest"/>
+    </VBox>
+
+    <VBox visible="false" fx:id="createDirOnClient">
+        <HBox VBox.vgrow="ALWAYS">
+            <TextField text="Enter name directory to create" fx:id="createDirTextField" onAction="#createDirOnClient"/>
+        </HBox>
+        <Button text="Enter" onAction="#createDirOnClient"/>
+    </VBox>
+
+    <VBox visible="false" fx:id="createDirOnServer">
+        <HBox VBox.vgrow="ALWAYS">
+            <TextField text="Enter name directory to create" fx:id="createDirOnServerTextField"
+                       onAction="#createDirOnServer"/>
+
+        </HBox>
+        <Button text="Enter" onAction="#createDirOnServer"/>
+    </VBox>
+
+    <HBox visible="false" alignment="CENTER" fx:id="cloudPanel">
+        <VBox fx:id="clientBox">
+            <padding>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+            </padding>
+            <Label text="CLIENT" style="-fx-font: bold 16 Courier;"
+                   alignment="CENTER" maxWidth="Infinity"/>
+            <ListView fx:id="clientFiles" minHeight="500" minWidth="320">
+            </ListView>
+            <VBox alignment="CENTER">
+                <HBox>
+                    <Button text="Upload" onAction="#upload" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                    <Button text="Delete" onAction="#deleteOnClient" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                    <Button text="Back" onAction="#back" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                </HBox>
+                <HBox>
+                    <Button text="Refresh" onAction="#refresh" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                    <Button text="CreateDir" onAction="#createDirectory" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                </HBox>
+            </VBox>
+            <HBox alignment="CENTER">
+                <ProgressBar fx:id="progressBarForClient" minHeight="20" minWidth="320">
+                </ProgressBar>
+            </HBox>
+        </VBox>
+
+        <VBox fx:id="serverBox">
+            <padding>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+            </padding>
+            <Label text="SERVER" style="-fx-font: bold 16 Courier;"
+                   alignment="CENTER" maxWidth="Infinity"/>
+            <ListView fx:id="serverFiles" minHeight="500" minWidth="320">
+            </ListView>
+            <VBox alignment="CENTER">
+                <HBox>
+                    <Button text="Download" HBox.hgrow="ALWAYS" maxWidth="Infinity"
+                            onAction="#downLoad"/>
+                    <Button text="Delete" HBox.hgrow="ALWAYS" maxWidth="Infinity"
+                            onAction="#deleteFromServer"/>
+                    <Button text="Back" HBox.hgrow="ALWAYS" maxWidth="Infinity"
+                            onAction="#backOnServer"/>
+                </HBox>
+                <HBox>
+                    <Button text="Share" HBox.hgrow="ALWAYS" maxWidth="Infinity"
+                            onAction="#shareFile"/>
+                    <Button text="CreateDir" onAction="#createDirectoryOnServer" HBox.hgrow="ALWAYS"
+                            maxWidth="Infinity"/>
+                    <Button text="Refresh" onAction="#refreshOnServer" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                </HBox>
+            </VBox>
+            <HBox alignment="CENTER">
+                <ProgressBar fx:id="progressBarForServer" minHeight="20" minWidth="320">
+                </ProgressBar>
+            </HBox>
+        </VBox>
+    </HBox>
+
+</AnchorPane>
